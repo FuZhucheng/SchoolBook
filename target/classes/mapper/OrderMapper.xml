@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fuzhu.dao.OrderMapper" >
+  <resultMap id="BaseResultMap" type="com.fuzhu.entity.Order" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="order_status" property="orderStatus" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="INTEGER" />
+    <result column="target_address" property="targetAddress" jdbcType="VARCHAR" />
+    <result column="telephone" property="telephone" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="book_num" property="bookNum" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, description, name, order_status, price, target_address, telephone, user_id,book_num
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from f_order
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from f_order
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.fuzhu.entity.Order" >
+    insert into f_order (id, description, name, 
+      order_status, price, target_address, 
+      telephone, user_id,book_num)
+    values (#{id,jdbcType=BIGINT}, #{description,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{orderStatus,jdbcType=VARCHAR}, #{price,jdbcType=INTEGER}, #{targetAddress,jdbcType=VARCHAR}, 
+      #{telephone,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT},#{bookNum,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fuzhu.entity.Order" >
+    insert into f_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="orderStatus != null" >
+        order_status,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="targetAddress != null" >
+        target_address,
+      </if>
+      <if test="telephone != null" >
+        telephone,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStatus != null" >
+        #{orderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=INTEGER},
+      </if>
+      <if test="targetAddress != null" >
+        #{targetAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fuzhu.entity.Order" >
+    update f_order
+    <set >
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStatus != null" >
+        order_status = #{orderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=INTEGER},
+      </if>
+      <if test="targetAddress != null" >
+        target_address = #{targetAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fuzhu.entity.Order" >
+    update f_order
+    set description = #{description,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      order_status = #{orderStatus,jdbcType=VARCHAR},
+      price = #{price,jdbcType=INTEGER},
+      target_address = #{targetAddress,jdbcType=VARCHAR},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=BIGINT},
+      book_num = #{bookNum,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
