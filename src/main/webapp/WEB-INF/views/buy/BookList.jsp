@@ -74,8 +74,19 @@
                 <strong>${msg}</strong>
             </div>
         </c:if>
+
         <!-- Main content -->
         <section class="content">
+            <a type="button" class="btn btn-danger" onclick="showChoose()" >目录选择</a>
+            <div class="box-body" style="display: none;"  id="chooseType">
+                    <form action="/book/search" method="post">
+                        <select name="typeList" id="typeList" >
+                            <option value="">请选择</option>
+                        </select>
+                        <input type="submit" class="btn btn-danger" value="查询">
+                    </form>
+            </div>
+
             <div class="box box-info">
                 <div class="box-body" style="display: block;">
                     <div class="table-responsive">
@@ -190,12 +201,42 @@
 <script src='<%=request.getContextPath()%>/js/transition.js'></script>
 
 <script>
+
+    function showChoose() {
+        $("#chooseType").show();
+        locationChange();
+    }
     function showimage(source) {
         $("#imgInModalID").attr("src", source);
         $('.modal').show();
     }
     function closeModel() {
         $('.modal').hide();
+    }
+
+
+    function locationChange() {
+        var type = "";
+        var obj = document.getElementById('typeList');
+        obj.options.length = 0;
+        obj.add(new Option("请选择", ""));
+        $.ajax({
+            type: "post",
+            url: "/book/getParentTypeList",
+            cache: false,
+            data: {type: type},
+            dataType: "json",
+            success: function (result) {
+                if (result.length > 0) {
+                    obj.add(new Option("请选择", ""));
+                    for (var i in result) {
+                        var selectOption = new Option(result[i].name, result[i].id);
+                        obj.add(selectOption);
+                    }
+                }
+            }
+        });
+
     }
 </script>
 </body>

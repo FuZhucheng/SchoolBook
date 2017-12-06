@@ -132,4 +132,12 @@
     from book b
     WHERE b.book_num>0
   </select>
+
+
+  <select id="getAllBookByType" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    b.*
+    from book b,book_category bc,category c
+    WHERE b.id=bc.book_id and bc.category_id = c.id and c.id = #{id,jdbcType=INTEGER}
+  </select>
 </mapper>

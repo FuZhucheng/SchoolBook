@@ -1,12 +1,13 @@
 package com.fuzhu.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.fuzhu.entity.Book;
+import com.fuzhu.entity.Category;
 import com.fuzhu.entity.Order;
-import com.fuzhu.entity.User;
 import com.fuzhu.service.BookService;
+import com.fuzhu.service.CategoryService;
 import com.fuzhu.service.OrderService;
 import com.fuzhu.service.UserService;
-import com.fuzhu.utils.AuthUtil;
 import com.fuzhu.utils.CookieUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,13 +15,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.*;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by 符柱成 on 2017/11/28.
@@ -35,6 +35,8 @@ public class BookController {
     private UserService userService;
     @Autowired
     private OrderService orderService;
+    @Autowired
+    private CategoryService categoryService;
 
     //所有用户接口
     @RequestMapping(value = "getAllBook", method = {RequestMethod.GET})
@@ -46,8 +48,10 @@ public class BookController {
         } else {
             request.setAttribute("isLogin", "Login");
         }
+
         request.setAttribute("books", books);
         request.setAttribute("pageNo", pageNo);
+
         return "buy/BookList";
     }
 
@@ -166,5 +170,25 @@ public class BookController {
                 e.printStackTrace();
             }
         }
+    }
+    @ResponseBody
+    @RequestMapping(value = "getParentTypeList", method = {RequestMethod.GET, RequestMethod.POST})
+    public String getParentTypeList(@RequestParam(value = "type", required = true) String type, HttpServletRequest request) throws Exception {
+        String userId = CookieUtil.getByName(request, "isLogin");
+        if (userId == null || "".equals(userId)) {
+            return "buy/BookList";
+        }
+        List<Category> categoryList  = categoryService.getParentTypeList();
+        return JSON.toJSONString(categoryList);
+    }
+    @RequestMapping(value = "search", method = {RequestMethod.GET, RequestMethod.POST})
+    public String search(HttpServletRequest request,String typeList) throws Exception {
+        String userId = CookieUtil.getByName(request, "isLogin");
+        if (userId == null || "".equals(userId)) {
+            return "buy/BookList";
+        }
+        List<Book> books = bookService.getAllBookByType(Integer.valueOf(typeList));
+        request.setAttribute("books", books);
+        return "buy/BookList";
     }
 }

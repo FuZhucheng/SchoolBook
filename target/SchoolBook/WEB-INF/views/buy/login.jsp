@@ -63,8 +63,9 @@ To change this template use File | Settings | File Templates.
         </div>
         <!-- /.col -->
         <div class="col-xs-4">
+          <br/>
           <a type="button" class="btn btn-info" href="<%=request.getContextPath()%>/user/registerPage">注册</a>
-
+          <br/>
           <button type="submit" class="btn btn-primary btn-block btn-flat">登录</button>
         </div>
         <!-- /.col -->

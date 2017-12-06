@@ -34,4 +34,9 @@ public class BookServiceImpl implements BookService {
         return  bookMapper.insert(record);
     }
 
+    @Override
+    public List<Book> getAllBookByType(Integer typeId) {
+        return bookMapper.getAllBookByType(typeId);
+    }
+
 }

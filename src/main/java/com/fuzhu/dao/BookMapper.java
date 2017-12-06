@@ -19,4 +19,6 @@ public interface BookMapper {
     int updateByPrimaryKey(Book record);
 
     List<Book> getAllBook();
+
+    List<Book> getAllBookByType(Integer typeId);
 }

@@ -13,4 +13,5 @@ public interface BookService {
     int updateByPrimaryKey(Book record);
 
     int insert(Book record);
+    List<Book> getAllBookByType(Integer typeId);
 }

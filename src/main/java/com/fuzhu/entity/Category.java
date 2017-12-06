@@ -1,21 +1,19 @@
 package com.fuzhu.entity;
 
 public class Category {
-    private Long id;
+    private Integer id;
 
     private String description;
 
-    private Long firstLevelId;
-
     private String name;
 
-    private Long secondLevelId;
+    private Integer parentId;
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -27,14 +25,6 @@ public class Category {
         this.description = description == null ? null : description.trim();
     }
 
-    public Long getFirstLevelId() {
-        return firstLevelId;
-    }
-
-    public void setFirstLevelId(Long firstLevelId) {
-        this.firstLevelId = firstLevelId;
-    }
-
     public String getName() {
         return name;
     }
@@ -43,11 +33,11 @@ public class Category {
         this.name = name == null ? null : name.trim();
     }
 
-    public Long getSecondLevelId() {
-        return secondLevelId;
+    public Integer getParentId() {
+        return parentId;
     }
 
-    public void setSecondLevelId(Long secondLevelId) {
-        this.secondLevelId = secondLevelId;
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
     }
 }
