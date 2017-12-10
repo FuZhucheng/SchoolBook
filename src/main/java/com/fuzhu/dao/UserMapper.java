@@ -23,4 +23,6 @@ public interface UserMapper {
 
     User selectByAccount(Map userInfo);
 
+    User getUserInfoByGoodsId(Integer bookId);
+
 }

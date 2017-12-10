@@ -140,4 +140,7 @@
     from book b,book_category bc,category c
     WHERE b.id=bc.book_id and bc.category_id = c.id and c.id = #{id,jdbcType=INTEGER}
   </select>
+
+
+
 </mapper>

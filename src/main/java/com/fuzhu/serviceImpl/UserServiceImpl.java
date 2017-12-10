@@ -53,4 +53,11 @@ public class UserServiceImpl implements UserService {
     public User selectByAccount(Map userInfo) {
         return userMapper.selectByAccount(userInfo);
     }
+
+    @Override
+    public User getUserInfoByGoodsId(Integer bookId) {
+        return userMapper.getUserInfoByGoodsId(bookId);
+    }
+
+
 }

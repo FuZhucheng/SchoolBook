@@ -129,6 +129,7 @@
                                     <td>
                                         <%--<a type="button" class="btn btn-danger" href="deleteAccusation?pageNo=${pageNo}&aid=${user.id}">删除</a>--%>
                                         <a type="button" class="btn btn-danger" href="/book/bookOrder?bookId=${user.id}">购买</a>
+                                        <a type="button" class="btn btn-danger" href="/user/getUserInfoByGoodsId?bookId=${user.id}">商家信息</a>
                                     </td>
                                 </tr>
                             </c:forEach>

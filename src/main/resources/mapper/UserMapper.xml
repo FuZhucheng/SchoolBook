@@ -176,4 +176,13 @@
     where account = #{account,jdbcType=VARCHAR}
     AND password = #{password,jdbcType=VARCHAR}
   </select>
+
+
+  <select id="getUserInfoByGoodsId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    u.*
+    from book b,user u
+    WHERE b.owner_id=u.id
+    AND b.id = #{bookId,jdbcType=BIGINT}
+  </select>
 </mapper>

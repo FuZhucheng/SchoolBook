@@ -59,7 +59,7 @@ public class BookController {
     public String butOrder(@RequestParam(value = "bookId", required = true) int bookId, HttpServletRequest request) throws Exception {
         String userId = CookieUtil.getByName(request, "isLogin");
         if (userId == null || "".equals(userId)) {
-            return "buy/BookList";
+            return "redirect:/user/loginPage";
         }
         Book book = bookService.getOneBook(Long.valueOf(bookId));
         request.setAttribute("book", book);

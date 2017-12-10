@@ -44,7 +44,7 @@ To change this template use File | Settings | File Templates.
 </c:if>
 <div class="login-box">
   <div class="login-logo">
-    <b>爱豆号</b>
+    <b>校园二手书交易系统</b>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">

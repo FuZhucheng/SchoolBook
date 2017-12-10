@@ -23,4 +23,6 @@ public interface UserService {
 
     User selectByAccount(Map userInfo);
 
+
+    User getUserInfoByGoodsId(Integer bookId);
 }
