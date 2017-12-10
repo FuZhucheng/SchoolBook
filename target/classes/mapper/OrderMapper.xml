@@ -127,4 +127,13 @@
       book_num = #{bookNum,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+
+  <select id="getMyOrder" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    f.*
+    from f_order f,user u
+    where f.user_id = u.id
+    AND u.id = #{userId,jdbcType=BIGINT}
+  </select>
 </mapper>

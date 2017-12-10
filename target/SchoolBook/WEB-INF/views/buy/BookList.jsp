@@ -54,6 +54,7 @@
 
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
+                    <a type="button" class="btn btn-info" href="<%=request.getContextPath()%>/user/getMyOrder">自己的订单</a>
                     <a type="button" class="btn btn-info" href="<%=request.getContextPath()%>/book/salePage">卖书去</a>
                     <c:if test="${isLogin=='notLogin'}">
                         <a type="button" class="btn btn-info" href="<%=request.getContextPath()%>/user/loginPage">登录</a>
@@ -129,6 +130,7 @@
                                     <td>
                                         <%--<a type="button" class="btn btn-danger" href="deleteAccusation?pageNo=${pageNo}&aid=${user.id}">删除</a>--%>
                                         <a type="button" class="btn btn-danger" href="/book/bookOrder?bookId=${user.id}">购买</a>
+                                        <a type="button" class="btn btn-danger" href="/user/getUserInfoByGoodsId?bookId=${user.id}">商家信息</a>
                                     </td>
                                 </tr>
                             </c:forEach>

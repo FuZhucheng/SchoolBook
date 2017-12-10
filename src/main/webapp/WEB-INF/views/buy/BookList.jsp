@@ -54,6 +54,7 @@
 
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
+                    <a type="button" class="btn btn-info" href="<%=request.getContextPath()%>/user/getMyOrder">自己的订单</a>
                     <a type="button" class="btn btn-info" href="<%=request.getContextPath()%>/book/salePage">卖书去</a>
                     <c:if test="${isLogin=='notLogin'}">
                         <a type="button" class="btn btn-info" href="<%=request.getContextPath()%>/user/loginPage">登录</a>

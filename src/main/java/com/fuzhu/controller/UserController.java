@@ -1,6 +1,8 @@
 package com.fuzhu.controller;
 
+import com.fuzhu.entity.Order;
 import com.fuzhu.entity.User;
+import com.fuzhu.service.OrderService;
 import com.fuzhu.service.UserService;
 import com.fuzhu.utils.CookieUtil;
 import com.fuzhu.utils.JavaWebToken;
@@ -25,6 +27,9 @@ import java.util.Map;
 public class UserController {
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private OrderService orderService;
 
 
 
@@ -98,5 +103,14 @@ public class UserController {
         request.setAttribute("user",user);
         return "UserInfoPage";
     }
-
+    @RequestMapping(value = "/getMyOrder", method = {RequestMethod.GET})
+    public String getMyOrder(HttpServletRequest request) {
+        String userId = CookieUtil.getByName(request, "isLogin");
+        if (userId == null || "".equals(userId)) {
+            return "buy/BookList";
+        }
+        List<Order> orderList = orderService.getMyOrder(Long.valueOf(userId));
+        request.setAttribute("orderList",orderList);
+        return "buy/OrderList";
+    }
 }

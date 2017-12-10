@@ -109,6 +109,7 @@
                                 <th>国家</th>
                                 <th>省份</th>
                                 <th>城市</th>
+                                <th>操作</th>
                             </tr>
                             </thead>
                             <tbody>

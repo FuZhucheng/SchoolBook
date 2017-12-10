@@ -6,6 +6,8 @@ import com.fuzhu.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by 符柱成 on 2017/12/4.
  */
@@ -17,5 +19,10 @@ public class OrderServiceImpl implements OrderService{
     @Override
     public int insert(Order record) {
         return orderMapper.insert(record);
+    }
+
+    @Override
+    public List<Order> getMyOrder(Long userId) {
+        return orderMapper.getMyOrder(userId);
     }
 }
