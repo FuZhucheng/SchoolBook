@@ -17,7 +17,6 @@ public class JavaWebToken {
     private static Logger log = LoggerFactory.getLogger("JavaWebToken");
 
     private static Key getKeyInstance() {
-//        return MacProvider.generateKey();
         //We will sign our JavaWebToken with our ApiKey secret
         SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
         byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary("aidouAPP");
@@ -39,5 +38,4 @@ public class JavaWebToken {
             return null;
         }
     }
-
 }

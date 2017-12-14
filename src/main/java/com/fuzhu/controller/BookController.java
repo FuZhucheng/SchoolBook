@@ -56,7 +56,7 @@ public class BookController {
     }
 
     @RequestMapping(value = "bookOrder", method = {RequestMethod.GET, RequestMethod.POST})
-    public String butOrder(@RequestParam(value = "bookId", required = true) int bookId, HttpServletRequest request) throws Exception {
+    public String bookOrder(@RequestParam(value = "bookId", required = true) int bookId, HttpServletRequest request) throws Exception {
         String userId = CookieUtil.getByName(request, "isLogin");
         if (userId == null || "".equals(userId)) {
             return "redirect:/user/loginPage";
